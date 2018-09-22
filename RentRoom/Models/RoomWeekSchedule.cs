@@ -13,5 +13,6 @@ namespace RentRoom.Models
         public string HourOfBeginEvent { get; set; }
         public string HourOfEndEvent { get; set; }
         public string ValidTo { get; set; }
+
     }
 }

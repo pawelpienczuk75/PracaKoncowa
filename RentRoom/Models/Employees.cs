@@ -10,6 +10,7 @@ namespace RentRoom.Models
         public int Id { get; set; }
         public string NameOfEmploye { get; set; }
         public string SurnameOfEmploye { get; set; }
-        public ICollection<RoomDescriptionModel> DepencyCollection { get; set; }
+        public ICollection<RoomDescriptionModel> DepencyCollectionRoomDescriptionModels { get; set; }
+        public ICollection<RoomWeekSchedule> DepencyCollectionRoomWeekSchedules { get; set; }
     }
 }
