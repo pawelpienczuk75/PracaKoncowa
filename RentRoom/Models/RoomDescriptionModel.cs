@@ -12,6 +12,8 @@ namespace RentRoom.Models
         public string IsAvailable { get; set; }
         public string SizeOfRoom { get; set; }
         public decimal FeePerHour { get; set; }
+        public ICollection<RoomDescriptionModel> DepencyCollectionRoomDescriptionModels { get; set; }
+        public ICollection<RoomWeekSchedule> DepencyCollectionRoomWeekSchedules { get; set; }
 
     }
 }
