@@ -19,6 +19,10 @@ namespace RentRoom.Models
         public string IsConfirm { get; set; }
         public string StateOfReservation { get; set; }
         public string IsSettement { get; set; }  //Czy zostało rozliczone.
+        public Customers Customers { get; set; }
+        public Employees Employees { get; set; }
+        public RoomDescriptionModel RoomDescriptionModel { get; set; }
+
 
 
     }

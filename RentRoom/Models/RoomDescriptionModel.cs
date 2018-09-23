@@ -8,7 +8,7 @@ namespace RentRoom.Models
     public class RoomDescriptionModel
     {
         public int Id { get; set; }
-        public string NameOfRomm { get; set; }
+        public string NameOfRoom { get; set; }
         public string IsAvailable { get; set; }
         public string SizeOfRoom { get; set; }
         public decimal FeePerHour { get; set; }
