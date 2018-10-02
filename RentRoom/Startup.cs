@@ -34,9 +34,9 @@ namespace RentRoom
           //  services.AddIdentity<IdentityUser, IdentityRole>()
           //      .AddEntityFrameworkStores<IdentityContext>();
 
-            services.AddDbContext<MessageContext>(opt => opt.UseSqlServer(connectionString),
-                ServiceLifetime.Transient);
-            services.AddTransient<MessageManager>();
+         //   services.AddDbContext<MessageContext>(opt => opt.UseSqlServer(connectionString),
+         ///       ServiceLifetime.Transient);
+         ///   services.AddTransient<MessageManager>();
 
             services.AddMvc();
         }
@@ -49,8 +49,8 @@ namespace RentRoom
 
             if (env.IsDevelopment())
             {
-          //      app.UseBrowserLink();
-                app.UseDeveloperExceptionPage();
+               app.UseBrowserLink();
+               app.UseDeveloperExceptionPage();
             }
             else
             {

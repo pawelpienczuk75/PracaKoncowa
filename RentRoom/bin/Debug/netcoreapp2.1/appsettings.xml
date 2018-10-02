@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Root>
+  <ConnectionStrings>
+    <DefaultConnection>Integrated Security = SSPI;Data Source=DELL-KOMPUTER\SQLEXPRESS;Initial Catalog=rMvcDb;</DefaultConnection>
+  </ConnectionStrings>
+</Root>

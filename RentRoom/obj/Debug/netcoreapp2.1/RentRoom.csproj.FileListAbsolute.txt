@@ -25,3 +25,4 @@ C:\PracaKoncowa\RentRoom\RentRoom\obj\Debug\netcoreapp2.1\RentRoom.pdb
 C:\PracaKoncowa\RentRoom\RentRoom\obj\Debug\netcoreapp2.1\RentRoom.csproj.CopyComplete
 C:\PracaKoncowa\RentRoom\RentRoom\obj\Debug\netcoreapp2.1\Razor\Views\ViewTableOfWeek.g.cshtml.cs
 C:\PracaKoncowa\RentRoom\RentRoom\obj\Debug\netcoreapp2.1\Razor\Views\Default\Index.g.cshtml.cs
+C:\PracaKoncowa\RentRoom\RentRoom\bin\Debug\netcoreapp2.1\appsettings.xml
