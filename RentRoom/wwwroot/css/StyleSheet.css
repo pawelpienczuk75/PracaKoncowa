@@ -1,14 +1,71 @@
-﻿
+﻿.register-form {
+    font-family: Arial;
+    font-size: 15px;
+}
+
+input[type="submit"] {
+    margin-left: 1%;
+    padding: 1px 3px;
+    font-size: 1em;
+    color: black
+}
+
+.control-label {
+    display: inline-block;
+    width: 20%;
+    vertical-align: top;
+    text-align: left;
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+
+
+.divusermanager {
+    background-color: gainsboro;
+    border: 3px solid black;
+    padding: 10px 15px;
+    width: 50%;
+    margin-left: 20%;
+    border-spacing: 0;
+}
+
+
+.usermanager {
+    
+    margin-left: 25%;
+    font-family: Arial;
+    font-size: 24px;
+    line-height: 2em;
+    
+}
+
+.tableofcolumn {
+    background-color: gainsboro;
+    border: 3px solid black;
+    padding: 10px 15px;
+    border-spacing: 0;
+}
+
 th {
     background-color: yellow;
     border: 3px solid black;
     padding: 10px 15px;
     border-spacing: 0;
 }
+
 h2 {
     background-color: red;
     border: 3px solid black;
     padding: 5px 15px;
+
+}
+
+.tableheadstyletermreserved {
+    background-color: firebrick;
+    border: 3px solid black;
+    padding: 10px 15px;
+    border-spacing: 0;
 }
 
 .tableheadstyle {
@@ -21,17 +78,18 @@ h2 {
     border: 3px solid black;
     padding: 5px 15px;
 }
+
 .tablebodystyleoff {
     background-color: gainsboro;
     border: 3px solid black;
     padding: 5px 15px;
 }
+
 .tablebodystylemoveon {
     background-color: violet;
     border: 3px solid black;
     padding: 5px 15px;
 }
-
    
 table {
     /*border-spacing: 0;*/

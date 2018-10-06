@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using RentRoom.Context;
 
 namespace RentRoom
 {
@@ -28,15 +29,15 @@ namespace RentRoom
         {
             var connectionString = Configuration["ConnectionStrings:DefaultConnection"];
 
-          //  services.AddDbContext<IdentityContext>(opt => opt.UseSqlServer(connectionString),
-          //      ServiceLifetime.Transient);
+            services.AddDbContext<IdentityContext>(opt => opt.UseSqlServer(connectionString),
+                ServiceLifetime.Transient);
 
-          //  services.AddIdentity<IdentityUser, IdentityRole>()
-          //      .AddEntityFrameworkStores<IdentityContext>();
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<IdentityContext>();
 
-         //   services.AddDbContext<MessageContext>(opt => opt.UseSqlServer(connectionString),
-         ///       ServiceLifetime.Transient);
-         ///   services.AddTransient<MessageManager>();
+            //   services.AddDbContext<MessageContext>(opt => opt.UseSqlServer(connectionString),
+            //       ServiceLifetime.Transient);
+            //   services.AddTransient<MessageManager>();
 
             services.AddMvc();
         }
@@ -63,7 +64,7 @@ namespace RentRoom
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Account}/{action=Index}/{id?}");
             });
         }
     }
