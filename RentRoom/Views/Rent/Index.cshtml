@@ -1,7 +1,20 @@
-﻿
+﻿@model RentRoom.Models.RoomDescriptionModel
 @{
     ViewData["Title"] = "Index";
 }
 
 <h2>Index</h2>
+<form asp-action="RentRoomTerm">
+    <!-- @Html.DropDownList("text", (IEnumerable<SelectListItem>)ViewBag.List) -->
+    @Html.DropDownListFor(x => Model.NameOfRoom, (IEnumerable<SelectListItem>)ViewBag.List)
+    
+    <div class="form-group">
+        <input type="submit" value="Login" class="btn btn-default" />
+    </div>
 
+</form>
+
+    <!-- jQuery -->
+
+    <script src="/js/jquery-3.2.1.min.js" type="text/javascript"></script>
+    <script src="/js/VievRentOfRoom.js" type="text/javascript"></script>

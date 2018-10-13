@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewData["Title"] = "RentRoomTerm";
+}
+
+<h2>RentRoomTerm</h2>
+
+<p></p>
+<h2 class="display" style="width: 77%">ViewTableOfWeek</h2>
+<p></p>
+<p></p>
+<table id="tableOfWeek" class="display tablespaces" style="width: 80%">
+<thead class="tableheadstyle">
+<tr id="dayOfWeek">
+    <th>        </th>
+    <th>Poniedziałek</th>
+    <th>Wtorek</th>
+    <th>Środa</th>
+    <th>Czwartek</th>
+    <th>Piątek</th>
+    <th>Sobota</th>
+    <th>Niedziela</th>
+</tr>
+<tr id="data">
+    <th>Godzina</th>
+    <th id="firstDayOfWeek" class="headRow" data-data="">25.05.2018</th>
+    <th id="secondDayOfWeek" class="headRow" data-data="">26.05.2018</th>
+    <th id="thirdDayOfWeek" class="headRow" data-data="">27.05.2018</th>
+    <th id="fourthDayOfWeek" class="headRow"data-data="">28.05.2018</th>
+    <th id="fifthDayOfWeek" class="headRow" data-data="">29.05.2018</th>
+    <th id="sixthDayOfWeek" class="headRow" data-data="">30.05.2018</th>
+    <th id="seventhDayOfWeek"class="headRow" data-data="">31.05.2018</th>
+</tr>
+</thead>
+
+<tr id="prototype" class="">
+    <td id="" class="tableofcolumn" data-dataTime=""></td>
+    <td id="" class="" data-dataTime=""></td>
+    <td id="" class="" data-dataTime=""></td>
+    <td id="" class="" data-dataTime=""></td>
+    <td id="" class="" data-dataTime=""></td>
+    <td id="" class="" data-dataTime=""></td>
+    <td id="" class="" data-dataTime=""></td>
+    <td id="" class="" data-dataTime=""></td>
+</tr>
+<tfoot>
+<tr class="">
+    <td class="tableheadstyle" colspan="8">
+        <a id="previous" href="#"> << Poprzedni Tydzień    </a><a id="next">    Następny Tydzień >> </a>
+    </td>
+</tr>
+</tfoot>
+
+</table>
+
+<!-- jQuery -->
+<script src="/js/jquery-3.2.1.min.js" type="text/javascript"></script>
+<script src="/js/RentRoomTermData.js" type="text/javascript"></script>

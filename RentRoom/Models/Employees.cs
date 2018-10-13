@@ -12,5 +12,6 @@ namespace RentRoom.Models
         public string SurnameOfEmploye { get; set; }
         public ICollection<RoomDescriptionModel> DepencyCollectionRoomDescriptionModels { get; set; }
         public ICollection<RoomWeekSchedule> DepencyCollectionRoomWeekSchedules { get; set; }
+        public ICollection<RoomRentModel> DepencyCollectionRoomRentModels { get; set; }
     }
 }

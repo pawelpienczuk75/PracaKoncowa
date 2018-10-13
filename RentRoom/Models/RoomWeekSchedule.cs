@@ -7,7 +7,7 @@ namespace RentRoom.Models
 {
     public class RoomWeekSchedule
     {
-        public int Id;
+        public int Id { get; set; }
         public string NameOfEvent { get; set; }
         public string NameOfDayWeek { get; set; }
         public string HourOfBeginEvent { get; set; }

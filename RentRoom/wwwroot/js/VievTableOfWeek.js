@@ -41,7 +41,7 @@ var reloadDataInTable = function() {
     var tableDatacels = document.getElementsByClassName("tablebodystyle");
     var headTableData = document.getElementsByClassName("headRow");
     var columTableData = document.getElementsByClassName("tableofcolumn");
-
+    console.log("2");
     var numbrerOfCels = 0;
     for (var i = 1; i < columTableData.length; i++) {
 
@@ -59,7 +59,7 @@ var reloadDataInTable = function() {
 
 var setReservedTerm = function(table) {
     var tableDatacels = document.getElementsByClassName("tablebodystyle");
-    
+    console.log("3");
     for (var i = 0; i < tableDatacels.length; i++) {
 
         var tem = tableDatacels[0].dataset.dataTime;
@@ -84,7 +84,7 @@ var tablelaPomocnicza = [
 
 var updateDate = function (table) {
     var setdata = document.querySelector('#data');
-
+    console.log("1");
    for (var i = 0; i < 7; i++) {
 
         setdata.children[i + 1].dataset.data = table[i];
@@ -103,25 +103,25 @@ reloadDataInTable();
     
     //----------------------------------------------------------------------//
     //Najechanie kursorem na komórekę taleli. 
-    var tableOnMove = document.getElementsByClassName("tablebodystyle");
+  //  var tableOnMove = document.getElementsByClassName("tablebodystyle");
     
-    for (var i = 0; i < tableOnMove.length; i++) {
+  //  for (var i = 0; i < tableOnMove.length; i++) {
         
-        tableOnMove[i].addEventListener("mouseover", function () {
-        this.setAttribute("class", "tablebodystylemoveon");
+  //      tableOnMove[i].addEventListener("mouseover", function () {
+  //      this.setAttribute("class", "tablebodystylemoveon");
        
-        });
-    }
+  //      });
+  //  }
 
-  //-------------------------------------------------------------------------//
-  // Zjechanie kursora z komórki tabeli.
-    for (var i = 0; i < tableOnMove.length; i++) {
+  ////-------------------------------------------------------------------------//
+  //// Zjechanie kursora z komórki tabeli.
+  //  for (var i = 0; i < tableOnMove.length; i++) {
 
-        tableOnMove[i].addEventListener("mouseout", function () {
-        this.setAttribute("class", "tablebodystyle");
+  //      tableOnMove[i].addEventListener("mouseout", function () {
+  //      this.setAttribute("class", "tablebodystyle");
 
-        });
-    }
+  //      });
+  //  }
 
 //-------------------------------------------------------------------------//
 // Przewijanie tygodni w przod.
@@ -176,7 +176,7 @@ reloadDataInTable();
                     updateDate(newDateValue);
                     reloadDataInTable();
                     console.log(termReservedLenght);
-                    setReservedTerm(termReserved);
+                  //  setReservedTerm(termReserved);
 
                 },
 

@@ -3,48 +3,92 @@
 @{
     ViewData["Title"] = "Register";
 }
-<head>
-    <link rel="stylesheet" href="/css/StyleSheet.css">
-</head>
 
-<h2>Rejestracja</h2>
+<h2>Register</h2>
 
-<hr />
-<div class="row">
-    <div class="divusermanager">
-        <form asp-action="Register">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Login" class="control-label"></label>
-                <input asp-for="Login" class="register-form" />
-                <span asp-validation-for="Login" class="text-danger"></span>
-                <p></p>
+<form asp-action="Register">
+    <div class="magin-left">
+
+        <div class="form-group col-md-6">
+            <label asp-for="Login"></label>
+            <input asp-for="Login" class="form-control" placeholder="Login" />
+            <span asp-validation-for="Login" class="text-danger"></span>
+        </div>
+
+        <div class="form-group col-md-6">
+            <label asp-for="Password"></label>
+            <input asp-for="Password" class="form-control" placeholder="Password" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+
+        <div class="form-group col-md-6">
+            <label asp-for="RepeatPassword">Repeat Password</label>
+            <input asp-for="RepeatPassword" class="form-control" placeholder="Repeat Password" />
+            <span asp-validation-for="RepeatPassword" class="text-danger"></span>
+        </div>
+
+        <div class="form-group col-md-6">
+            <label asp-for="Email">Adres Email</label>
+            <input asp-for="Email" class="form-control" placeholder="Podaj adres email" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+
+        <div class="form-group col-md-6">
+            <label asp-for="NameOfCustomer" class="">Imię Nazwisko</label>
+            <input asp-for="NameOfCustomer" class="form-control" placeholder="Imię Nazwisko" />
+            <span asp-validation-for="NameOfCustomer" class="text-danger"></span>
+        </div>
+
+        <div class="form-group col-md-6">
+            <label asp-for="PhoneNumber">Numer Telefonu</label>
+            <input asp-for="PhoneNumber" class="form-control" placeholder="Numer Telefonu" />
+            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+        </div>
+
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="invoiceCheck">
+            <label class="form-check-label" for="gridCheck">
+                Faktura
+            </label>
+        </div>
+
+        <div id="invoice" class="hidden form-group col-md-6">
+                <label asp-for="NameOfComany" class=""> Nazwa Firmy</label>
+                <input asp-for="NameOfComany" class="form-control" placeholder="Nazwa Firmy" />
+                <span asp-validation-for="NameOfComany" class="text-danger"></span>
+           
+            <div class="form-group col-md-6">
+                <label asp-for="Citi">Kod Pocztowy i Miejscowość</label>
+                <input asp-for="Citi" class="form-control" placeholder="Kod Pocztowy i Miejscowość" />
+                <span asp-validation-for="Citi" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="register-form" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-                <p></p>
+            <div class="form-group col-md-6">
+                <label asp-for="NIP">Numer Identyfikacji Podatkowej NIP</label>
+                <input asp-for="NIP" class="form-control" placeholder="Numer Identyfikacji Podatkowej NIP" />
+                <span asp-validation-for="NIP" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Password" class="control-label"></label>
-                <input asp-for="Password" class="register-form" />
-                <span asp-validation-for="Password" class="text-danger"></span>
-                <p></p>
-            </div>
-            <div class="form-group">
-                <label asp-for="RepeatPassword" class="control-label"></label>
-                <input asp-for="RepeatPassword" class="register-form" />
-                <span asp-validation-for="RepeatPassword" class="text-danger"></span>
-                <p></p>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Rejestracja" class="btn btn-default" />
-            </div>
-        </form>
+
+
+        </div>
+        <p>
+          <button type="submit" class="btn btn-primary">Rejestracja</button>
+        </p>
+
+
+
+
     </div>
-</div>
+</form>
+
+
+
+
 
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
+
+<!-- jQuery -->
+<script src="/js/jquery-3.2.1.min.js" type="text/javascript"></script>
+<script src="/js/Register.js" type="text/javascript"></script>
+

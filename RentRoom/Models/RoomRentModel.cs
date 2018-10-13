@@ -21,7 +21,9 @@ namespace RentRoom.Models
         public string IsSettement { get; set; }  //Czy zostało rozliczone.
         public Customers Customers { get; set; }
         public Employees Employees { get; set; }
+        public RoomWeekSchedule RoomWeekSchedule { get; set; }
         public RoomDescriptionModel RoomDescriptionModel { get; set; }
+        
 
 
 

@@ -1,4 +1,15 @@
-﻿.register-form {
+﻿.magin-left {
+    margin-left: 25%;
+}
+
+.magin-right {
+    margin-right: 10%;
+}
+.hidden {
+    visibility: hidden;
+}
+
+.register-form {
     font-family: Arial;
     font-size: 15px;
 }
@@ -45,6 +56,7 @@ input[type="submit"] {
     border: 3px solid black;
     padding: 10px 15px;
     border-spacing: 0;
+
 }
 
 th {
@@ -77,15 +89,18 @@ h2 {
     background-color: green;
     border: 3px solid black;
     padding: 5px 15px;
+    color: white;
+    cursor: pointer;
 }
+   
 
-.tablebodystyleoff {
-    background-color: gainsboro;
-    border: 3px solid black;
-    padding: 5px 15px;
-}
+    .tablebodystyleoff {
+        background-color: gainsboro;
+        border: 3px solid black;
+        padding: 5px 15px;
+    }
 
-.tablebodystylemoveon {
+.tablebodystyle:hover {
     background-color: violet;
     border: 3px solid black;
     padding: 5px 15px;

@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using RentRoom.Context;
+using RentRoom.Models;
 
 namespace RentRoom
 {
@@ -32,13 +33,10 @@ namespace RentRoom
             services.AddDbContext<IdentityContext>(opt => opt.UseSqlServer(connectionString),
                 ServiceLifetime.Transient);
 
-            services.AddIdentity<IdentityUser, IdentityRole>()
+            services.AddIdentity<UserModel, IdentityRole>()
                 .AddEntityFrameworkStores<IdentityContext>();
 
-            //   services.AddDbContext<MessageContext>(opt => opt.UseSqlServer(connectionString),
-            //       ServiceLifetime.Transient);
-            //   services.AddTransient<MessageManager>();
-
+            
             services.AddMvc();
         }
 

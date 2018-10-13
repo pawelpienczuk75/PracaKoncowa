@@ -3,29 +3,65 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Index</h2>
-<div class="divusermanager">
-    <a asp-action="Register" class="usermanager">Rejestracja Nowego Użytkowanika</a>
-</div>
-<p></p>
-<div class="divusermanager">
-    <a asp-action="Login" class="usermanager">Login</a>
-</div>
-    <p></p>
 
-    @if (User.Identity.IsAuthenticated)
-    {
-        <a asp-action="Logout">Logout</a>
-    }
+<nav class="navbar navbar-expand-sm navbar-light" style="background-color: #e3f2fd">
+    <a asp-action="Index" class="nav-link">Home</a>
+    
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a asp-action="Register" class="nav-link">Rejestracja</a>
+                @*  <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>*@
+            </li>
+            <li class="nav-item active">
+                <a asp-action="Login" class="nav-link">Login</a>
+                @*  <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>*@
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Dropdown
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="#">Disabled</a>
+            </li>
+            <li class="nav-item nav-link">
 
-    <p></p>
+                
+            </li>
 
-    @if (User.Identity.IsAuthenticated)
-    {
-        <div>Użytkownik Zalogowany.</div>
-    }
-    else
-    {
-        <div>Użytkownik Niezalogowany.</div>
-    }
+            
+        </ul>
+        
+        @if (User.Identity.IsAuthenticated)
+        {
+            <a asp-action="Logout" class="magin-right">Logout</a>
+        }
+       
+        @if (User.Identity.IsAuthenticated)
+        {
+            <div class="magin-right">Użytkownik Zalogowany.</div>
+        }
+        else
+        {
+            <div class="magin-right">Użytkownik Niezalogowany.</div>
+        }
+
+    </div>
+</nav>
+
+
+
+
+
+
 

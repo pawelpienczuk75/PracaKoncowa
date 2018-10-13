@@ -1,0 +1,49 @@
+﻿@model RentRoom.Models.RoomDescriptionModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<h4>RoomDescriptionModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddRoom">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="NameOfRoom" class="control-label"></label>
+                <input asp-for="NameOfRoom" class="form-control" />
+                <span asp-validation-for="NameOfRoom" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IsAvailable" class="control-label"></label>
+                @Html.DropDownListFor(x => x.IsAvailable, new[] {
+                    new SelectListItem() {Text = "Tak", Value = "Yes"},
+                    new SelectListItem() {Text = "Nie", Value = "No"}
+                }, "Wybierz opcje")
+                <p></p>
+                <span asp-validation-for="IsAvailable" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SizeOfRoom" class="control-label">Podaj rozmiar sali w m2.</label>
+                <input asp-for="SizeOfRoom" class="form-control" />
+                <span asp-validation-for="SizeOfRoom" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FeePerHour" class="control-label">Podaj Stawkę Wynajmu</label>
+                <input asp-for="FeePerHour" class="form-control" />
+                <span asp-validation-for="FeePerHour" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
