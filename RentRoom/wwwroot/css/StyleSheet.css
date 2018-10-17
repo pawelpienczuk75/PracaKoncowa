@@ -1,5 +1,9 @@
-﻿.magin-left {
+.magin-left {
     margin-left: 25%;
+}
+
+.magin-left-table {
+    margin-left: 3%;
 }
 
 .magin-right {
@@ -21,7 +25,7 @@ input[type="submit"] {
     color: black
 }
 
-.control-label {
+/*.control-label {
     display: inline-block;
     width: 20%;
     vertical-align: top;
@@ -49,22 +53,22 @@ input[type="submit"] {
     font-size: 24px;
     line-height: 2em;
     
-}
+}*/
 
-.tableofcolumn {
+/*.tableofcolumn {
     background-color: gainsboro;
     border: 3px solid black;
     padding: 10px 15px;
     border-spacing: 0;
 
-}
+}*/
 
-th {
-    background-color: yellow;
+/*th {
+   // background-color: yellow;
     border: 3px solid black;
     padding: 10px 15px;
     border-spacing: 0;
-}
+}*/
 
 h2 {
     background-color: red;
@@ -86,15 +90,16 @@ h2 {
     padding: 5px 15px;
 }
 .tablebodystyle {
-    background-color: green;
+    background-color: ghostwhite;
     border: 3px solid black;
     padding: 5px 15px;
-    color: white;
+    color: black;
     cursor: pointer;
+    
 }
    
 
-    .tablebodystyleoff {
+.tablebodystyleoff {
         background-color: gainsboro;
         border: 3px solid black;
         padding: 5px 15px;
@@ -102,11 +107,11 @@ h2 {
 
 .tablebodystyle:hover {
     background-color: violet;
-    border: 3px solid black;
+    /*border: 3px solid black;*/
     padding: 5px 15px;
 }
    
 table {
-    /*border-spacing: 0;*/
+    border-spacing: 0;
     text-align: center;
 }

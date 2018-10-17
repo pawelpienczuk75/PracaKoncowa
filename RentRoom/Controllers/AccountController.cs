@@ -68,7 +68,7 @@ namespace RentRoom.Controllers
 
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Account");
                 }
                 else
                 {
@@ -92,6 +92,7 @@ namespace RentRoom.Controllers
             addCustomers.PhoneNumber = model.PhoneNumber;
             addCustomers.NameOfCustomer = model.NameOfCustomer;
 
+
             _context.Add(addCustomers);
 
             try
@@ -100,11 +101,7 @@ namespace RentRoom.Controllers
             }
             catch (DbUpdateException)
             {
-                if (addCustomers.Id != default(int))
-                {
-                    addCustomers.Id = default(int);
-                    _context.SaveChanges();
-                }
+                
             }
 
             
@@ -134,9 +131,7 @@ namespace RentRoom.Controllers
                 }
             }
 
-            var posts = _context.Users
-                .Include(x => x.UserName);
-
+           
             return View();
         }
 

@@ -7,8 +7,8 @@ namespace RentRoom.Classes
 {
     public class ComJson
     {
-        public string[] DataTable { get; set; }
-        public string[] Hourpreiod { get; set; }
+        public string[] dataTable = new string[7];
+        public string[] HourPeriod { get; set; }
 
     }
 
