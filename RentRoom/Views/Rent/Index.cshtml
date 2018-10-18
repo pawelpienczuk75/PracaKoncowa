@@ -89,110 +89,63 @@
     <div>
         <table id="tableOfWeek" class="table table-bordered tablespaces display magin-left-table" style="width: 80%">
             <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Poniedziałek</th>
-                <th scope="col">Wtorek</th>
-                <th scope="col">Środa</th>
-                <th scope="col">Czwartek</th>
-                <th scope="col">Piątek</th>
-                <th scope="col">Sobota</th>
-                <th scope="col">Niedziela</th>
-            </tr>
-            <tr id="data">
-                <th scope="col">Godzina</th>
-                <th id="firstDayOfWeek" scope="col" class="headRow" data-data="25.05.2018">25.05.2018</th>
-                <th id="secondDayOfWeek" scope="col" class="headRow" data-data="26.05.2018">26.05.2018</th>
-                <th id="thirdDayOfWeek" scope="col" class="headRow" data-data="27.05.2018">27.05.2018</th>
-                <th id="fourthDayOfWeek" scope="col" class="headRow" data-data="28.05.2018">28.05.2018</th>
-                <th id="fifthDayOfWeek" scope="col" class="headRow" data-data="29.05.2018">29.05.2018</th>
-                <th id="sixthDayOfWeek" scope="col" class="headRow" data-data="30.05.2018">30.05.2018</th>
-                <th id="seventhDayOfWeek" scope="col" class="headRow" data-data="31.05.2018">31.05.2018</th>
-            </tr>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Poniedziałek</th>
+                    <th scope="col">Wtorek</th>
+                    <th scope="col">Środa</th>
+                    <th scope="col">Czwartek</th>
+                    <th scope="col">Piątek</th>
+                    <th scope="col">Sobota</th>
+                    <th scope="col">Niedziela</th>
+                </tr>
+                <tr id="data">
+                    <th scope="col">Godzina</th>
+                    <th id="firstDayOfWeek" scope="col" class="headRow" data-data="25.05.2018">25.05.2018</th>
+                    <th id="secondDayOfWeek" scope="col" class="headRow" data-data="26.05.2018">26.05.2018</th>
+                    <th id="thirdDayOfWeek" scope="col" class="headRow" data-data="27.05.2018">27.05.2018</th>
+                    <th id="fourthDayOfWeek" scope="col" class="headRow" data-data="28.05.2018">28.05.2018</th>
+                    <th id="fifthDayOfWeek" scope="col" class="headRow" data-data="29.05.2018">29.05.2018</th>
+                    <th id="sixthDayOfWeek" scope="col" class="headRow" data-data="30.05.2018">30.05.2018</th>
+                    <th id="seventhDayOfWeek" scope="col" class="headRow" data-data="31.05.2018">31.05.2018</th>
+                </tr>
             </thead>
             <tbody>
-            <tr id="prototype" class="">
-                <th scope="row" id="" class="tableofcolumn" data-dataTime="">1</th>
-                <td id="" class="" data-dataTime=""></td>
-                <td id="" class="" data-dataTime=""></td>
-                <td id="" class="" data-dataTime=""></td>
-                <td id="" class="" data-dataTime=""></td>
-                <td id="" class="" data-dataTime=""></td>
-                <td id="" class="" data-dataTime=""></td>
-                <td id="" class="" data-dataTime=""></td>
-            </tr>
+                <tr id="prototype" class="">
+                    <th scope="row" id="" class="tableofcolumn" data-dataTime="">1</th>
+                    <td id="" class="" data-dataTime=""></td>
+                    <td id="" class="" data-dataTime=""></td>
+                    <td id="" class="" data-dataTime=""></td>
+                    <td id="" class="" data-dataTime=""></td>
+                    <td id="" class="" data-dataTime=""></td>
+                    <td id="" class="" data-dataTime=""></td>
+                    <td id="" class="" data-dataTime=""></td>
+                </tr>
+            </tbody>
             <tfoot>
-               
+              
             </tfoot>
-           
-           
         </table>
-        <nav aria-label="...">
-            <ul class="pagination pagination-sm">
-                <li class="page-item disabled">
-                    <a class="page-link" href="#" tabindex="-1">1</a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-            </ul>
-        </nav>
-    </div>
-    </div>
-    
-    @*<div Id="showTableOfWeek" class="hidden">
-    <p></p>
-    <h2 class="display" style="width: 77%">ViewTableOfWeek</h2>
-    <p></p>
-    <p></p>
-    <table id="tableOfWeek" class="display tablespaces" style="width: 80%">
-        <thead class="tableheadstyle">
-            <tr id="dayOfWeek">
-                <th> </th>
-                <th>Poniedziałek</th>
-                <th>Wtorek</th>
-                <th>Środa</th>
-                <th>Czwartek</th>
-                <th>Piątek</th>
-                <th>Sobota</th>
-                <th>Niedziela</th>
-            </tr>
-            <tr id="data">
-                <th>Godzina</th>
-                <th id="firstDayOfWeek" class="headRow" data-data="25.05.2018">25.05.2018</th>
-                <th id="secondDayOfWeek" class="headRow" data-data="26.05.2018">26.05.2018</th>
-                <th id="thirdDayOfWeek" class="headRow" data-data="27.05.2018">27.05.2018</th>
-                <th id="fourthDayOfWeek" class="headRow" data-data="28.05.2018">28.05.2018</th>
-                <th id="fifthDayOfWeek" class="headRow" data-data="29.05.2018">29.05.2018</th>
-                <th id="sixthDayOfWeek" class="headRow" data-data="30.05.2018">30.05.2018</th>
-                <th id="seventhDayOfWeek" class="headRow" data-data="31.05.2018">31.05.2018</th>
-            </tr>
-        </thead>
+        
+        <tr  class="table table-bordered">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1">Poprzedni Tydzeń</a>
+                    </li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">4</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">Następny Tydzeń</a>
+                    </li>
+                </ul>
+            </nav>
 
-        <tr id="prototype" class="">
-            <td id="" class="tableofcolumn" data-dataTime=""></td>
-            <td id="" class="" data-dataTime=""></td>
-            <td id="" class="" data-dataTime=""></td>
-            <td id="" class="" data-dataTime=""></td>
-            <td id="" class="" data-dataTime=""></td>
-            <td id="" class="" data-dataTime=""></td>
-            <td id="" class="" data-dataTime=""></td>
-            <td id="" class="" data-dataTime=""></td>
         </tr>
-        <tfoot>
-            <tr class="">
-                <td class="tableheadstyle" colspan="8">
-                    <a id="previous" href="#"> << Poprzedni Tydzień </a><a id="next"> Następny Tydzień >> </a>
-                </td>
-            </tr>
-        </tfoot>
 
-    </table>
-
-    
-   </div>*@
-
-    <div class="form-group">
-        <input type="submit" value="Login" class="btn btn-default" />
+    </div>
     </div>
 
 </form>

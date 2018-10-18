@@ -27,29 +27,75 @@ namespace RentRoom.Controllers
 
          return View();
         }
+        [HttpPost]
+        public IActionResult RentRoomChangeWeek( string selecedWeek, string selecedRoom)
+        {
+            int temp = Int32.Parse(selecedWeek);
+            DateTimeManage myDateTimeManage = new DateTimeManage();
+            ComJson myData = new ComJson();
+            string[] tempTeble = myDateTimeManage.FourWeeksTable(temp - 1);
+            RoomDescriptionModel myRoomDescriptionModel = new RoomDescriptionModel();
+            
+            if (!string.IsNullOrEmpty(selecedRoom))
+            {
+                var myRoom = _context.RoomDescriptionModels.Where(x => x.NameOfRoom == selecedRoom)
+                    .Select(i => i.Id).ToArray();
+
+                var myRents = _context.RoomRent.Where(x => x.RoomDescriptionModelId == myRoom[0]).ToList();
+
+                for (int i = 0; i < myRents.Count; i++)
+                {
+                    string tempDate = myRents[i].DateOfEvent;
+
+                    for (int ii = 0; ii < tempTeble.Length; ii++)
+                    {
+                        if (tempTeble[ii] == tempDate)
+                        {
+                            tempTeble[ii] = tempTeble[ii] + " " + myRents[i].HourOfBeginEvent;
+                        }
+
+                    }
+                }
+            }
+
+
+            for (int i = 0; i < 7; i++)
+            {
+                myData.dataTable[i] = tempTeble[i];
+            }
+
+            myData.HourPeriod = new string[] { "10", "18" };
+
+            return Json(myData);
+        }
 
         [HttpPost]
         public IActionResult RentRoomReservationTerms(string term, string room)
         {
-            
-            var myRoom = _context.RoomDescriptionModels.Where(x => x.NameOfRoom == room)
-                .Select(i => i.Id).ToArray();
 
             RoomRentModel myRentModel = new RoomRentModel();
-            UserModel myUserModel = new UserModel();
+
+
+
+            var myRoom = _context.RoomDescriptionModels.Where(x => x.NameOfRoom == room)
+                .Select(i => i.Id).ToArray();
+            var myRents = _context.RoomRent.Where(x => x.RoomDescriptionModelId == myRoom[0]).ToList();
 
             string[] dateFromViev = term.Split();
 
             int temp = Int32.Parse(dateFromViev[1]);
-            temp = temp + 1;
+         
 
             var temp2 = HttpContext.User.Identity.Name;
 
             var temp3 = _context.UserModels.Where(x => x.UserName == temp2)
                 .Select(i => i.CustomersID).ToArray();
-            
-            
 
+            var isItFree = _context.RoomRent.Where(x => x.DateOfEvent == dateFromViev[0])
+                .Where(d => d.HourOfBeginEvent == dateFromViev[1]).ToList();
+            if (isItFree.Count == 0)
+            {
+             temp = temp + 1;
             myRentModel.StateOfReservation = "New";
             myRentModel.DateOfEvent = dateFromViev[0];
             myRentModel.HourOfBeginEvent = dateFromViev[1];
@@ -74,46 +120,40 @@ namespace RentRoom.Controllers
                 
             }
 
+            }
+            else
+            {
 
+            }
             return View();
         }
 
         [HttpPost]
         public IActionResult RentRoomTerm(string room)
         {
-            
             ComJson myData = new ComJson();
-
             DateTimeManage myDateTimeManage = new DateTimeManage();
             string[] tempTeble = myDateTimeManage.FourWeeksTable(0);
-            RoomDescriptionModel myRoomDescriptionModel = new RoomDescriptionModel();
-
-
-
+            string temp = "";
+            var myRents = new List<RoomRentModel>();
+            
+            
             if (!string.IsNullOrEmpty(room))
             {
                 var myRoom = _context.RoomDescriptionModels.Where(x => x.NameOfRoom == room)
                     .Select(i => i.Id).ToArray();
 
-                var myRents = _context.RoomRent.Where(x => x.RoomDescriptionModelId == myRoom[0]).ToList();
+                 myRents = _context.RoomRent.Where(x => x.RoomDescriptionModelId == myRoom[0]).ToList();
 
-                for (int i = 0; i < myRents.Count; i++)
+                for (int i = 0 ; i < myRents.Count; i++)
                 {
-                    string tempDate = myRents[i].DateOfEvent;
-
-                    for (int ii = 0 ; ii < tempTeble.Length; ii++)                 
-                    {
-                        
-                        if (tempTeble[ii] == tempDate)
-                        {
-                            tempTeble[ii] = tempTeble[ii] + " " + myRents[i].HourOfBeginEvent;
-                            
-                        }
-
-                
-                    }
+                    string sTemp = myRents[i].DateOfEvent + " " + myRents[i].HourOfBeginEvent;
+                    myData.ReservTerms.Add(sTemp);
                 }
+
             }
+
+            
 
 
             for (int i = 0; i < 7; i++)
@@ -132,7 +172,7 @@ namespace RentRoom.Controllers
             var listFromDataBase = _context.RoomDescriptionModels.ToList();
 
             var listOfRooms = new List<string>();
-          
+
             for (int i = 0; i < listFromDataBase.Count; i++)
             {
                 string name = listFromDataBase[i].NameOfRoom;
@@ -143,26 +183,6 @@ namespace RentRoom.Controllers
             return Json(listOfRooms);
         }
 
-        [HttpPost]
-        public IActionResult RentRoomTermData(string data)
-        {
-            if (string.IsNullOrEmpty(data))
-            {
-                ComJson myData = new ComJson();
-                myData.dataTable = new string[] {"08.06.2018 09 10", "09.06.2018 01", "10.06.2018", "11.06.2018", "12.06.2018", "13.06.2018", "14.06.2018", "11" };
-                myData.HourPeriod = new string[] { "10" , "12"};
 
-                return Json(myData);
-
-            }
-            else
-            {
-                string[] DataTable = { "08.06.2018 09 10", "09.06.2018 01", "10.06.2018", "11.06.2018", "12.06.2018", "13.06.2018", "14.06.2018" };
-                return Json(DataTable);
-            }
-            
-            //return Json(new{id = 5});
-           
-        }
     }
 }

@@ -9,7 +9,7 @@ namespace RentRoom.Classes
     {
         public string[] dataTable = new string[7];
         public string[] HourPeriod { get; set; }
-
+        public List<string> ReservTerms = new List<string>() ;
     }
 
 }

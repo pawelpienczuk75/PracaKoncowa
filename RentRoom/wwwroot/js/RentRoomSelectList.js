@@ -1,8 +1,24 @@
-﻿//Pobieranie listy sal//
+﻿
 document.addEventListener("DOMContentLoaded", function () {
 
+    //var renmoveClassTableheadstyletermreserved = function () {
+    //    var tableDatacels = document.getElementsByClassName("t1");
+    //    for (var i = 0; i < tableDatacels.length; i++) {
+    //        var temp2 = tableDatacels[i].classList;
 
+    //        for (var k = 0; k < temp2.length; k++) {
 
+    //            if (temp2[k] === "tableheadstyletermreserved") {
+
+    //                tableDatacels[i].classList.toggle("tableheadstyletermreserved");
+    //                tableDatacels[i].classList.toggle("tablebodystyle");
+    //            }
+
+    //        }
+    //    }
+    //};
+
+//Pobieranie listy sal//
 var addOption = function(tableOfRoom) {
     var selectRoomOption = document.querySelector('#selectRoomOption');
     var selectList = document.querySelector('#selectRoom');
@@ -19,6 +35,7 @@ var addOption = function(tableOfRoom) {
 
     };
 
+ //dodawanie rezerwacji//
     var setReservedTerm = function (table) {
         var tableDatacels = document.getElementsByClassName("t1");
         console.log("3");
@@ -39,10 +56,10 @@ var addOption = function(tableOfRoom) {
 
             }
         }
-
-       
+  
     };
 
+//pobieanie danych dla listy wyboru//
 $.ajax(
     {
         url: "/Rent/RentRoomTermSelectListData/",
@@ -56,16 +73,7 @@ $.ajax(
         }
     });
 
-    //function sleep(milliseconds) {
-    //    var start = new Date().getTime();
-    //    for (var i = 0; i < 1e7; i++) {
-    //        if ((new Date().getTime() - start) > milliseconds) {
-    //            break;
-    //        }
-    //    }
-    //}
-
-    //sleep(100);
+ //Wbor sali//
 
     var selectList = document.querySelector('#selectRoom');
     selectList.addEventListener("change", function () {
@@ -79,11 +87,8 @@ $.ajax(
                 type: "POST",
                 dataType: "json",
                 success: function(data) {
-                    console.log("dane z oncange", data);
-
+                   
                     var newDateValue = [];
-                    var termReserved = [];
-                    var termReservedLenght = 0;
                     var parameterbegin = data.hourPeriod[0];
                     var parameterend = data.hourPeriod[1];
                     parameterbegin = parseInt(parameterbegin, 10);
@@ -92,27 +97,14 @@ $.ajax(
                     for (var j = 0; j < data.dataTable.length; j++) {
 
                         var newDateTemp = data.dataTable[j].split(" ");
-                        newDateValue[j] = newDateTemp[0];
-
-                        if (newDateTemp.length > 0) {
-
-                            var temp = "";
-                            for (var k = 1; k < newDateTemp.length; k++) {
-
-                                temp = newDateTemp[0] + " " + newDateTemp[k];
-                                termReserved[termReservedLenght] = temp;
-                                termReservedLenght = termReservedLenght + 1;
-
-                            }
-                        }
+                        newDateValue[j] = newDateTemp[0];                      
 
                     }
                     addRow(parameterbegin, parameterend);
                     updateDate(newDateValue);
                     reloadDataInTable();
-                    setReservedTerm(termReserved);
-                    location.reload(); 
-
+                    setReservedTerm(data.reservTerms);
+                  
                 },
 
                 error: function (xhr, ajaxOptons, thorownError) {
@@ -121,6 +113,164 @@ $.ajax(
             });
     });
 
+//Przewijanie stron//
+
+    var pagination = document.getElementsByClassName("page-item");
+    pagination[pagination.length - 1].addEventListener("click",
+        function () {
+            var selectList = document.querySelector('#selectRoom');
+            var selectedValue = selectList.value;
+            var activeWeek = "";
+            var temp = pagination[4].classList;
+
+            for (var a = 0; a < temp.length; a++) {
+
+                if (temp[a] !== "disabled") {
+
+                    for (var r = 1; r < pagination.length - 2; r++) {
+
+                        var temp2 = pagination[r].classList;
+
+                        for (var k = 0; k < temp2.length; k++) {
+
+                            if (temp2[k] === "active") {
+                                
+                                pagination[r].classList.remove("active");
+                                pagination[r + 1].classList.add("active");
+                                activeWeek = pagination[r + 1].innerText;
+                                r = r + 1;
+                                
+                            }
+
+                        }
+
+
+                        if (r === 4) {
+                            console.log("diable", r);
+                            pagination[5].classList.add("disabled");
+                            pagination[4].classList.add("active");
+                        }
+                    }
+                }
+            }
+
+            pagination[0].classList.remove("disabled");
+
+            $.ajax(
+                {
+                    url: "/Rent/RentRoomChangeWeek/",
+                    data: {
+                        selecedWeek: activeWeek,
+                        selecedRoom: selectedValue
+                    },
+                    type: "POST",
+                    dataType: "json",
+                    success: function (data) {
+                        var newDateValue = [];
+                        var parameterbegin = data.hourPeriod[0];
+                        var parameterend = data.hourPeriod[1];
+                        parameterbegin = parseInt(parameterbegin, 10);
+                        parameterend = parseInt(parameterend, 10);
+
+                        for (var j = 0; j < data.dataTable.length; j++) {
+
+                            var newDateTemp = data.dataTable[j].split(" ");
+                            newDateValue[j] = newDateTemp[0];
+
+                        }
+
+                        renmoveClassTableheadstyletermreserved();
+                        addRow(parameterbegin, parameterend);
+                        updateDate(newDateValue);
+                        reloadDataInTable();
+                        setReservedTerm(data.reservTerms);
+                    },
+
+                    error: function (xhr, ajaxOptons, thorownError) {
+                        console.log(xhr.status);
+                    }
+                });
+
+
+
+        });
+
+    pagination[0].addEventListener("click",
+        function () {
+            var selectList = document.querySelector('#selectRoom');
+            var selectedValue = selectList.value;
+            var activeWeek = "";
+            var temp = pagination[1].classList;
+
+            for (var a = 0; a < temp.length; a++) {
+                
+                if (temp[a] !== "disabled") {
+                   
+                    for (var j = pagination.length - 1; j > 1; j--) {
+                        
+                        var temp2 = pagination[j].classList;
+                      
+                        for (var kk = 0; kk < temp2.length; kk++) {
+
+                            
+                            if (temp2[kk] === "active") {
+
+                                pagination[j].classList.remove("active");
+                                pagination[j - 1].classList.add("active");
+                                activeWeek = pagination[j - 1].innerText;
+                                j = j - 1;
+                            }
+
+                        }
+                        if (j === 1) {
+                            pagination[0].classList.add("disabled");
+                        }
+                    }
+                }
+            }
+
+            pagination[pagination.length - 1].classList.remove("disabled");
+
+            $.ajax(
+                {
+                    url: "/Rent/RentRoomChangeWeek/",
+                    data: {
+                        selecedWeek: activeWeek,
+                        selecedRoom: selectedValue
+                    },
+                    type: "POST",
+                    dataType: "json",
+                    success: function(data) {
+                        var newDateValue = [];
+                        var parameterbegin = data.hourPeriod[0];
+                        var parameterend = data.hourPeriod[1];
+                        parameterbegin = parseInt(parameterbegin, 10);
+                        parameterend = parseInt(parameterend, 10);
+
+                        for (var j = 0; j < data.dataTable.length; j++) {
+
+                            var newDateTemp = data.dataTable[j].split(" ");
+                            newDateValue[j] = newDateTemp[0];
+
+                        }
+
+                        //  location.reload();
+                        renmoveClassTableheadstyletermreserved();
+                        addRow(parameterbegin, parameterend);
+                        updateDate(newDateValue);
+                        reloadDataInTable();
+                        setReservedTerm(data.reservTerms);
+                    }
+                });
+        });
+
+
+    for (var i = 0; i < pagination.length; i++) {
+        pagination[i].addEventListener("click", function() {
+           var temp = this.innerText;
+           
+        });
+    }
 
 });
 

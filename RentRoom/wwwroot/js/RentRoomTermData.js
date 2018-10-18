@@ -29,6 +29,22 @@ var addRow = function (a, b) {
 };
 
 
+var renmoveClassTableheadstyletermreserved = function () {
+    var tableDatacels = document.getElementsByClassName("t1");
+    for (var i = 0; i < tableDatacels.length; i++) {
+        var temp2 = tableDatacels[i].classList;
+
+        for (var k = 0; k < temp2.length; k++) {
+
+            if (temp2[k] === "tableheadstyletermreserved") {
+
+                tableDatacels[i].classList.toggle("tableheadstyletermreserved");
+                tableDatacels[i].classList.toggle("tablebodystyle");
+            }
+
+        }
+    }
+};
 
 //------------------------------------------------------------------//
 //funkcja przeładowująca dane związane z datą i czasem w komórkach tabeli/ /
@@ -71,228 +87,15 @@ var updateDate = function (table) {
 
 };
 
-//Blokowanie zarezerwowanych terminów/
-
-//var setReservedTerm = function (table) {
-//    var tableDatacels = document.getElementsByClassName("tablebodystyle");
-//    console.log("3");
-//    console.log(tableDatacels);
-//    for (var i = 0; i < tableDatacels.length; i++) {
-
-//        var tem = tableDatacels[0].dataset.datatime;
-//        console.log(tem);
-//        for (var j = 0; j < table.length; j++) {
-
-//            if (tableDatacels[i].dataset.dataTime === table[j]) {
-//                tableDatacels[i].classList.remove("tablebodystyle");
-//                tableDatacels[i].classList.add("tableheadstyletermreserved");
-//                tableDatacels[i].classList.toggle('tablebodystyle');
-//                // link.className = 'newClass1 newClass2';
-//                //classList.add(className)
-//            }
-
-//        }
-//    }
-//};
-
-
-
-
-
-
-//var getDateForRentTable = function () {
-//    var firstDayOfWeek = document.querySelector('#firstDayOfWeek');
-//    // var firstDayOfWeekValue = firstDayOfWeek.dataset.data.data;
-//    $.ajax(
-//        {
-//            url: "/Rent/RentRoomTerm/",
-//            data: {},
-//            type: "POST",
-//            dataType: "json",
-//            success: function (data, xhr) {
-//                console.log("dane z kontrolera" ,data);
-                //var newDateValue = [];
-                //var termReserved = [];
-                //var termReservedLenght = 0;
-                //var parameterbegin = data.hourPeriod[0];
-                //var parameterend = data.hourPeriod[1];
-                //parameterbegin = parseInt(parameterbegin, 10);
-                //parameterend = parseInt(parameterend, 10);
-
-                //for (var j = 0; j < data.dataTable.length; j++) {
-
-                //    var newDateTemp = data.dataTable[j].split(" ");
-                //    newDateValue[j] = newDateTemp[0];
-
-                //    if (newDateTemp.length > 0) {
-
-                //        var temp = "";
-                //        for (var k = 1; k < newDateTemp.length; k++) {
-
-                //            temp = newDateTemp[0] + " " + newDateTemp[k];
-                //            termReserved[termReservedLenght] = temp;
-                //            termReservedLenght = termReservedLenght + 1;
-
-                //        }
-                //    }
-
-                //}
-                //addRow(parameterbegin, parameterend);
-                //updateDate(newDateValue);
-                //reloadDataInTable();
-                //setReservedTerm(termReserved);
-
-//            },
-
-//            error: function (xhr, ajaxOptons, thorownError) {
-//                console.log(xhr.status);
-//            }
-//        });
-
-//};
-
-
-//----------------------------------------------------------------------//
-
-
-//getDateForRentTable();
-
 //Defincje zdarzen//
 
 
 
-document.addEventListener("DOMContentLoaded", function () {
-   
 
 
+document.addEventListener("DOMSubtreeModified", function() {
 
-
-////--------------------------------------------------------------------------//
-
-
-//    //-------------------------------------------------------------------------//
-//    // Przewijanie tygodni w przod.
-
-//    var nextWeek = document.querySelector('#next');
-//    nextWeek.addEventListener("click", function () {
-
-
-//        console.log("kliknieto next");
-//    });
-
-//    //-------------------------------------------------------------------------//
-//    // Przewijanie tygodni w tył.
-
-//    var previousWeek = document.querySelector('#previous');
-//    previousWeek.addEventListener("click", function () {
-//        var firstDayOfWeek = document.querySelector('#firstDayOfWeek');
-//        var firstDayOfWeekValue = firstDayOfWeek.dataset.data.data;
-//        $.ajax(
-//            {
-//                url: "/Rent/RentRoomTermData/",
-//                data: { firstDayOfWeekValue },
-//                type: "POST",
-//                dataType: "json",
-//                // success: updateDate,
-//                success: function (data, xhr) {
-//                    console.log(data);
-//                    var newDateValue = [];
-//                    var termReserved = [];
-//                    var termReservedLenght = 0;
-
-//                    for (var j = 0; j < data.length; j++) {
-
-//                        var newDateTemp = data[j].split(" ");
-//                        newDateValue[j] = newDateTemp[0];
-
-//                        if (newDateTemp.length > 0) {
-
-//                            var temp = "";
-//                            for (var k = 1; k < newDateTemp.length; k++) {
-
-//                                temp = newDateTemp[0] + " " + newDateTemp[k];
-//                                termReserved[termReservedLenght] = temp;
-//                                termReservedLenght = termReservedLenght + 1;
-
-//                            }
-//                        }
-
-//                    }
-//                    updateDate(newDateValue);
-//                    reloadDataInTable();
-//                    console.log(termReservedLenght);
-//                    //  setReservedTerm(termReserved);
-
-//                },
-
-//                error: function (xhr, ajaxOptons, thorownError) {
-//                    console.log(xhr.status);
-//                }
-//            });
-//        reloadDataInTable();
-//        console.log("kliknieto next");
-//    });
-
-    //var getDateForRentTable2 = function() {
-    //    var firstDayOfWeek = document.querySelector('#firstDayOfWeek');
-    //    var firstDayOfWeekValue = firstDayOfWeek.dataset.data.data;
-    //    $.ajax(
-    //        {
-    //            url: "/Rent/RentRoomTermData/",
-    //            data: { firstDayOfWeekValue },
-    //            type: "POST",
-    //            dataType: "json",
-    //            // success: updateDate,
-    //            success: function(data, xhr) {
-    //                console.log(data.dataTable);
-    //                console.log(data.hourpreiod);
-    //                var newDateValue = [];
-    //                var termReserved = [];
-    //                var termReservedLenght = 0;
-    //                var parameterbegin = data.hourpreiod[0];
-    //                var parameterend = data.hourpreiod[1];
-    //                parameterbegin = parseInt(parameterbegin, 10);
-    //                parameterend = parseInt(parameterend, 10);
-
-    //                for (var j = 0; j < data.dataTable.length; j++) {
-
-    //                    var newDateTemp = data.dataTable[j].split(" ");
-    //                    newDateValue[j] = newDateTemp[0];
-
-    //                    if (newDateTemp.length > 0) {
-
-    //                        var temp = "";
-    //                        for (var k = 1; k < newDateTemp.length; k++) {
-
-    //                            temp = newDateTemp[0] + " " + newDateTemp[k];
-    //                            termReserved[termReservedLenght] = temp;
-    //                            termReservedLenght = termReservedLenght + 1;
-
-    //                        }
-    //                    }
-
-    //                }
-    //                addRow(parameterbegin, parameterend);
-    //                updateDate(newDateValue);
-    //                reloadDataInTable();
-    //                //console.log(termReservedLenght);
-    //                //  setReservedTerm(termReserved);
-
-    //            },
-
-    //            error: function(xhr, ajaxOptons, thorownError) {
-    //                console.log(xhr.status);
-    //            }
-    //        });
-
-    //};
-
-
-});
-
-
-document.addEventListener("DOMSubtreeModified",
-    function() {
+    //Blokowanie zarezerwownych terminów//
 
         var setReservedTerm = function(table) {
             var tableDatacels = document.getElementsByClassName("tablebodystyle");
@@ -309,10 +112,7 @@ document.addEventListener("DOMSubtreeModified",
                         console.log("jestem tu");
                         tableDatacels[i].classList.remove("tablebodystyle");
                         tableDatacels[i].classList.add("tableheadstyletermreserved");
-                        //  tableDatacels[i].classList.className("tablebodystyle", "tableheadstyletermreserved");
-                        //  tableDatacels[i].classList.toggle('tablebodystyle');
-                        // link.className = 'newClass1 newClass2';
-                        //classList.add(className)
+                        
                     }
 
                 }
@@ -331,75 +131,36 @@ document.addEventListener("DOMSubtreeModified",
           };
 
         
-
-        var makeRoomReservation = document.getElementsByClassName("tablebodystyle");
+//Rezerwowanie rerminow//
+ var makeRoomReservation = document.getElementsByClassName("tablebodystyle");
             
-            for (var i = 0; i < makeRoomReservation.length; i++) {
-
-                makeRoomReservation[i].addEventListener("click",
-                    function(e) {
-                       var selectedValue1 = selectedListValue;
-
+ for (var i = 0; i < makeRoomReservation.length; i++) {
+     makeRoomReservation[i].addEventListener("click",function (e) {
+        var selectedValue1 = selectedListValue;
+        var term = this.dataset.datatime;
+             $.ajax(
+                {
+                   url: "/Rent/RentRoomReservationTerms/",
+                   data: {
+                       term: term,
+                       Room: selectedValue1
+                          },
+                    type: "POST",
+                    dataType: "json",
+                    success: function (data) {           
                         
-                        var term = this.dataset.datatime;
+                        setReservedTerm(data.reservTerms);
+                    },
 
-                        //console.log("clik selectList", selectList1);
-                       
-                        $.ajax(
-                            {
-                                url: "/Rent/RentRoomReservationTerms/",
-                                data: {
-                                    term: term,
-                                    Room: selectedValue1
-                                },
-                                type: "POST",
-                                dataType: "json",
-                                success: function (data) {
-                                    console.log("dodano");
-
-                                    console.log("dane z oncange", data);
-
-                                    var newDateValue = [];
-                                    var termReserved = [];
-                                    var termReservedLenght = 0;
-                                    var parameterbegin = data.hourPeriod[0];
-                                    var parameterend = data.hourPeriod[1];
-                                    parameterbegin = parseInt(parameterbegin, 10);
-                                    parameterend = parseInt(parameterend, 10);
-
-                                    for (var j = 0; j < data.dataTable.length; j++) {
-
-                                        var newDateTemp = data.dataTable[j].split(" ");
-                                        newDateValue[j] = newDateTemp[0];
-
-                                        if (newDateTemp.length > 0) {
-
-                                            var temp = "";
-                                            for (var k = 1; k < newDateTemp.length; k++) {
-
-                                                temp = newDateTemp[0] + " " + newDateTemp[k];
-                                                termReserved[termReservedLenght] = temp;
-                                                termReservedLenght = termReservedLenght + 1;
-
-                                            }
-                                        }
-
-                                    }
-                                    console.log("rezeracja", termReserved);
-                                    setReservedTerm(termReserved);
-
-                                },
-
-                                error: function(xhr, ajaxOptons, thorownError) {
-                                    console.log(xhr.status);
-                                }
-                            });
-                        e.stopImmediatePropagation();
-                    });
-            }
-
-       
-    });  
+                 error: function(xhr, ajaxOptons, thorownError) {
+                        console.log(xhr.status);
+                 }
+                });
+                e.stopImmediatePropagation();
+     });
+ }
+ 
+ });  
     
 
 
