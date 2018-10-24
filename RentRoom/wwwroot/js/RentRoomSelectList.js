@@ -48,10 +48,6 @@ var addOption = function(tableOfRoom) {
                 if (tem === table[j]) {
                     tableDatacels[i].classList.remove("tablebodystyle");
                     tableDatacels[i].classList.add("tableheadstyletermreserved");
-                   // tableDatacels[i].classList.className("tablebodystyle", "tableheadstyletermreserved");
-                    //  tableDatacels[i].classList.toggle('tablebodystyle');
-                    // link.className = 'newClass1 newClass2';
-                    //classList.add(className)
                 }
 
             }
@@ -76,7 +72,7 @@ $.ajax(
  //Wbor sali//
 
     var selectList = document.querySelector('#selectRoom');
-    selectList.addEventListener("change", function () {
+    selectList.addEventListener("change" , function () {
         var selectedValue = selectList.value;
         var divTableOfWeek = document.querySelector('#showTableOfWeek');
         divTableOfWeek.classList.remove("hidden");
@@ -100,9 +96,12 @@ $.ajax(
                         newDateValue[j] = newDateTemp[0];                      
 
                     }
+                   
                     addRow(parameterbegin, parameterend);
+                    
                     updateDate(newDateValue);
                     reloadDataInTable();
+                    renmoveClassTableheadstyletermreserved();
                     setReservedTerm(data.reservTerms);
                   
                 },
@@ -178,9 +177,9 @@ $.ajax(
                             newDateValue[j] = newDateTemp[0];
 
                         }
-
+                        console.log("jestem tu");
                         renmoveClassTableheadstyletermreserved();
-                        addRow(parameterbegin, parameterend);
+                      //  addRow(parameterbegin, parameterend);
                         updateDate(newDateValue);
                         reloadDataInTable();
                         setReservedTerm(data.reservTerms);
@@ -254,11 +253,12 @@ $.ajax(
 
                         }
 
-                        //  location.reload();
                         renmoveClassTableheadstyletermreserved();
-                        addRow(parameterbegin, parameterend);
+                       // addRow(parameterbegin, parameterend);
                         updateDate(newDateValue);
+
                         reloadDataInTable();
+                        console.log("4", data.reservTerms);
                         setReservedTerm(data.reservTerms);
                     }
                 });

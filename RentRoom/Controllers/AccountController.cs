@@ -44,27 +44,16 @@ namespace RentRoom.Controllers
             return View();
         }
 
+        
         [HttpPost]
         public async Task<IActionResult> Login(LogInViewModel model)
         {
-           // var User = _context.Customerses.Include(x => x.DepencyCollectionRoomDescriptionModels);
-           // var cos = _context.UserModels; //.Include(x => x.CustomersID)
-           //     .Include(x => x.Name);
-
-          //  var posts = _context.RoomRent.Include(x => x.Customers).ToList();
-
-
-          //  var User2 = _context.Customerses.Include(x => x.EmailOfCustomer); 
-
+           
             if (ModelState.IsValid)
             {
                 var result = await _signInManager.PasswordSignInAsync(model.Login,
                     model.Password, model.RememberMe, false);
 
-                //var cos = _context.UserModels;
-                //var Name = cos.ToArray();
-                ////var cos2 = cos[0].Name;
-                //var ttata = Name[0].CustomersID;
 
                 if (result.Succeeded)
                 {
@@ -101,7 +90,7 @@ namespace RentRoom.Controllers
             }
             catch (DbUpdateException)
             {
-                
+                return Content("Brak dostepu do Bazy");
             }
 
             
@@ -133,6 +122,77 @@ namespace RentRoom.Controllers
 
            
             return View();
+        }
+
+
+        public IActionResult CustomerDane()
+        {
+            CustomerEditVievModel tempCustomerEditVievModel = new CustomerEditVievModel();
+
+            var tempUsrer = HttpContext.User.Identity.Name;
+
+            var temp3 = _context.UserModels.Where(x => x.UserName == tempUsrer)
+                .Select(i => i.CustomersID).ToArray();
+
+            var tempCustomer = _context.Customerses.Single(x => x.Id == temp3[0]);
+
+            tempCustomerEditVievModel.Citi = tempCustomer.Citi;
+            tempCustomerEditVievModel.Email = tempCustomer.EmailOfCustomer;
+            tempCustomerEditVievModel.NIP = tempCustomer.NIP;
+            tempCustomerEditVievModel.NameOfComany = tempCustomer.NameOfComany;
+            tempCustomerEditVievModel.NameOfCustomer = tempCustomer.NameOfCustomer;
+            tempCustomerEditVievModel.PhoneNumber = tempCustomer.PhoneNumber;
+            tempCustomerEditVievModel.Street = tempCustomer.PhoneNumber;
+            tempCustomerEditVievModel.Id = tempCustomer.Id;
+
+            return View(tempCustomerEditVievModel);
+        }
+
+        public IActionResult EditCustomer(int id)
+        {
+
+            CustomerEditVievModel tempCustomerEditVievModel = new CustomerEditVievModel();
+
+            var tempCustomer = _context.Customerses.Single(x => x.Id == id);
+
+            tempCustomerEditVievModel.Citi = tempCustomer.Citi;
+            tempCustomerEditVievModel.Email = tempCustomer.EmailOfCustomer;
+            tempCustomerEditVievModel.NIP = tempCustomer.NIP;
+            tempCustomerEditVievModel.NameOfComany = tempCustomer.NameOfComany;
+            tempCustomerEditVievModel.NameOfCustomer = tempCustomer.NameOfCustomer;
+            tempCustomerEditVievModel.PhoneNumber = tempCustomer.PhoneNumber;
+            tempCustomerEditVievModel.Street = tempCustomer.PhoneNumber;
+            tempCustomerEditVievModel.Id = tempCustomer.Id;
+
+            return View(tempCustomerEditVievModel);
+
+            
+        }
+        [HttpPost]
+        public IActionResult EditCustomer(CustomerEditVievModel customerEditVievModel)
+        {
+            Customers tempCustomers = new Customers();
+
+            tempCustomers.Id = customerEditVievModel.Id;
+            tempCustomers.Citi = customerEditVievModel.Citi;
+            tempCustomers.EmailOfCustomer = customerEditVievModel.Email;
+            tempCustomers.NIP = customerEditVievModel.NIP;
+            tempCustomers.NameOfComany = customerEditVievModel.NameOfComany;
+            tempCustomers.NameOfCustomer = customerEditVievModel.NameOfCustomer;
+            tempCustomers.PhoneNumber = customerEditVievModel.PhoneNumber;
+            tempCustomers.Street = customerEditVievModel.Street;
+
+            _context.Customerses.Update(tempCustomers);
+            try
+            {
+                _context.SaveChanges();
+            }
+            catch (DbUpdateException)
+            {
+                return Content("Brak dostepu do Bazy");
+            }
+
+            return RedirectToAction(nameof(Index));
         }
 
         [HttpGet]

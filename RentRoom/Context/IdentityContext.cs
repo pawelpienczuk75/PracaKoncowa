@@ -21,6 +21,8 @@ namespace RentRoom.Context
         public DbSet<RoomRentModel> RoomRent { get; set; }
         public DbSet<RoomWeekSchedule> RoomWeekSchedules { get; set; }
         public DbSet<UserModel> UserModels{ get; set; }
+        public DbSet<RentRoom.ViewModels.CustomerEditVievModel> CustomerEditVievModel { get; set; }
+        public DbSet<RentRoom.ViewModels.ListRentsViewModel> ListRentsViewModel { get; set; }
 
     //  public DbSet<RentRoom.ViewModels.RegisterViewModel> RegisterViewModel { get; set; }
 }

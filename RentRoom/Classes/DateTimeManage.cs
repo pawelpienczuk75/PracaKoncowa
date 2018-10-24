@@ -39,7 +39,7 @@ namespace RentRoom.Classes
             }
             else if (cont == 2)
             {
-                Temporary = Day.AddDays(-dayWeek + 1 + 17);
+                Temporary = Day.AddDays(-dayWeek + 1 + 14);
                 fourWeek[0] = Temporary.ToString("d");
                 for (int i = 0; i < 6; i++)
                 {

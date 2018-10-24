@@ -2,5 +2,7 @@
 <Root>
   <ConnectionStrings>
     <DefaultConnection>Integrated Security = SSPI;Data Source=DELL-KOMPUTER\SQLEXPRESS;Initial Catalog=Test2;</DefaultConnection>
-  </ConnectionStrings>
+    </ConnectionStrings>
+  <StartHour>16</StartHour>
+  <EndtHour>20</EndtHour>
 </Root>

@@ -16,7 +16,7 @@ var addRow = function (a, b) {
         newRow.children[0].dataset.dataTime = hour;
         for (var j = 1; j < 8; j++) {
 
-            newRow.children[j].setAttribute("id", "0" + hour + j);
+           // newRow.children[j].setAttribute("id", "0" + hour + j);
             newRow.children[j].setAttribute("class", "tablebodystyle t1");
             // newRow.children[j].dataset.dateTime = getdata.children[j].dataset.data + " " + hour;
         }
@@ -50,7 +50,9 @@ var renmoveClassTableheadstyletermreserved = function () {
 //funkcja przeładowująca dane związane z datą i czasem w komórkach tabeli/ /
 
 var reloadDataInTable = function () {
-   var tableDatacels = document.getElementsByClassName("t1");
+    var tableDatacels = document.getElementsByClassName("t1");
+    console.log(tableDatacels);
+
     var headTableData = document.getElementsByClassName("headRow");
     var columTableData = document.getElementsByClassName("tableofcolumn");
     
@@ -120,43 +122,43 @@ document.addEventListener("DOMSubtreeModified", function() {
 
         };
 
-         var selectedListValue = function() {
-                var selectList = document.querySelector('#selectRoom');
-                console.log("jestem tu");
-                console.log("clik selectList", selectList);
-                var selectedValue = selectList.value;
-                console.log("clik sselectedValue", selectedValue);
-
-                return selectedValue;
-          };
-
         
 //Rezerwowanie rerminow//
  var makeRoomReservation = document.getElementsByClassName("tablebodystyle");
             
  for (var i = 0; i < makeRoomReservation.length; i++) {
      makeRoomReservation[i].addEventListener("click",function (e) {
-        var selectedValue1 = selectedListValue;
-        var term = this.dataset.datatime;
-             $.ajax(
-                {
-                   url: "/Rent/RentRoomReservationTerms/",
-                   data: {
-                       term: term,
-                       Room: selectedValue1
-                          },
-                    type: "POST",
-                    dataType: "json",
-                    success: function (data) {           
-                        
-                        setReservedTerm(data.reservTerms);
-                    },
+         var selectList = document.querySelector('#selectRoom');
+         var selectedValue = selectList.value;
+         var term = this.dataset.datatime;
+         var temp = term.split(" ");
+         if (confirm("Rezeracja sali " + selectedValue + " w dniu " + temp[0] + " godzina " + temp[1])) {
 
-                 error: function(xhr, ajaxOptons, thorownError) {
-                        console.log(xhr.status);
-                 }
-                });
-                e.stopImmediatePropagation();
+             $.ajax(
+                 {
+                     url: "/Rent/RentRoomReservationTerms/",
+                     data: {
+                         term: term,
+                         Room: selectedValue
+                     },
+                     type: "POST",
+                     dataType: "json",
+                     success: function (data) {
+                         window.location.replace("http://localhost/Rent/Index");
+                       // window.location.;
+                         setReservedTerm(data.reservTerms);
+                     },
+
+                     error: function(xhr, ajaxOptons, thorownError) {
+                         console.log(xhr.status);
+                     }
+
+                 });
+             window.location.replace("/");
+             e.stopImmediatePropagation();
+         }
+
+         e.stopImmediatePropagation();
      });
  }
  

@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using RentRoom.Classes;
 using RentRoom.Context;
 using RentRoom.Models;
+using RentRoom.ViewModels;
 
 namespace RentRoom.Controllers
 {
@@ -35,6 +36,8 @@ namespace RentRoom.Controllers
             ComJson myData = new ComJson();
             string[] tempTeble = myDateTimeManage.FourWeeksTable(temp - 1);
             RoomDescriptionModel myRoomDescriptionModel = new RoomDescriptionModel();
+
+            ConfigHour myConfigHour = new ConfigHour();
             
             if (!string.IsNullOrEmpty(selecedRoom))
             {
@@ -45,18 +48,13 @@ namespace RentRoom.Controllers
 
                 for (int i = 0; i < myRents.Count; i++)
                 {
-                    string tempDate = myRents[i].DateOfEvent;
-
-                    for (int ii = 0; ii < tempTeble.Length; ii++)
-                    {
-                        if (tempTeble[ii] == tempDate)
-                        {
-                            tempTeble[ii] = tempTeble[ii] + " " + myRents[i].HourOfBeginEvent;
-                        }
-
-                    }
+                    string sTemp = myRents[i].DateOfEvent + " " + myRents[i].HourOfBeginEvent;
+                    myData.ReservTerms.Add(sTemp);
                 }
+
+               
             }
+           
 
 
             for (int i = 0; i < 7; i++)
@@ -64,22 +62,19 @@ namespace RentRoom.Controllers
                 myData.dataTable[i] = tempTeble[i];
             }
 
-            myData.HourPeriod = new string[] { "10", "18" };
-
+            myData.HourPeriod = new []{ myConfigHour.GetStartHours(), myConfigHour.GetEndHours() };
+            
             return Json(myData);
         }
 
         [HttpPost]
         public IActionResult RentRoomReservationTerms(string term, string room)
         {
-
             RoomRentModel myRentModel = new RoomRentModel();
-
-
 
             var myRoom = _context.RoomDescriptionModels.Where(x => x.NameOfRoom == room)
                 .Select(i => i.Id).ToArray();
-            var myRents = _context.RoomRent.Where(x => x.RoomDescriptionModelId == myRoom[0]).ToList();
+           // var myRents = _context.RoomRent.Where(x => x.RoomDescriptionModelId == myRoom[0]).ToList();
 
             string[] dateFromViev = term.Split();
 
@@ -111,21 +106,22 @@ namespace RentRoom.Controllers
 
             _context.Add(myRentModel);
 
-            try
-            {
-                _context.SaveChanges();
-            }
-            catch (DbUpdateException)
-            {
-                
-            }
+                    try
+                    {
+                        _context.SaveChanges();
+                    }
+                    catch (DbUpdateException)
+                    {
+                        return Content("Brak dostepu do Bazy");
+                     }
 
             }
             else
             {
 
             }
-            return View();
+
+            return RedirectToAction("Index", "Account");
         }
 
         [HttpPost]
@@ -136,9 +132,10 @@ namespace RentRoom.Controllers
             string[] tempTeble = myDateTimeManage.FourWeeksTable(0);
             string temp = "";
             var myRents = new List<RoomRentModel>();
-            
-            
-            if (!string.IsNullOrEmpty(room))
+
+            ConfigHour myConfigHour = new ConfigHour();
+
+             if (!string.IsNullOrEmpty(room))
             {
                 var myRoom = _context.RoomDescriptionModels.Where(x => x.NameOfRoom == room)
                     .Select(i => i.Id).ToArray();
@@ -150,18 +147,14 @@ namespace RentRoom.Controllers
                     string sTemp = myRents[i].DateOfEvent + " " + myRents[i].HourOfBeginEvent;
                     myData.ReservTerms.Add(sTemp);
                 }
-
             }
-
-            
-
 
             for (int i = 0; i < 7; i++)
             {
                 myData.dataTable[i] = tempTeble[i];
             }
-            
-            myData.HourPeriod = new string[] { "10", "18" };
+
+            myData.HourPeriod = new[] { myConfigHour.GetStartHours(), myConfigHour.GetEndHours() };
 
             return Json(myData);
         }
@@ -183,6 +176,28 @@ namespace RentRoom.Controllers
             return Json(listOfRooms);
         }
 
+        public IActionResult ListRents()
+        {
+            List<ListRentsViewModel> listOfRends = new List<ListRentsViewModel>();
 
+            var temp2 = HttpContext.User.Identity.Name;
+            var temp3 = _context.UserModels.Where(x => x.UserName == temp2)
+                .Select(i => i.CustomersID).ToArray();
+            var myRents = _context.RoomRent.Where(x => x.CustomersId == temp3[0]).ToList();
+            for (int i = 0; i < myRents.Count; i++)
+            {
+                ListRentsViewModel myListRents = new ListRentsViewModel();
+                var tempNameOfRoom = _context.RoomDescriptionModels
+                    .Single(x => x.Id == myRents[i].RoomDescriptionModelId);
+                myListRents.NameOfRoom = tempNameOfRoom.NameOfRoom;
+                myListRents.DateOfEvent = myRents[i].DateOfEvent;
+                myListRents.HourEvent = myRents[i].HourOfBeginEvent;
+                myListRents.Id = myRents[i].Id;
+                listOfRends.Add(myListRents);
+            }
+            
+            return View(listOfRends);
+
+        }
     }
 }

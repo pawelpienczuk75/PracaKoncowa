@@ -1,0 +1,106 @@
+﻿@model RentRoom.ViewModels.CustomerEditVievModel
+
+@{
+    ViewData["Title"] = "EditCustomer";
+}
+
+<nav class="navbar navbar-expand-sm navbar-light" style="background-color: #e3f2fd">
+    @Html.ActionLink("Home", "Index", "Account")
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+
+            <li class="nav-link active">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    @Html.ActionLink("Moje Dane", "CustomerDane", "Account")
+
+                }
+            </li>
+
+            <li class="nav-link active">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    @Html.ActionLink("Rezerwacja Sali", "Index", "Rent")
+
+                }
+            </li>
+            @*<li class="nav-link active">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    @Html.ActionLink("Sale", "Index", "RoomDescription")
+
+                }
+            </li>*@
+
+        </ul>
+
+        @if (User.Identity.IsAuthenticated)
+        {
+            <a asp-action="Logout" class="magin-right">Logout</a>
+        }
+
+        @if (User.Identity.IsAuthenticated)
+        {
+            <div class="magin-right">Użytkownik Zalogowany.</div>
+        }
+        else
+        {
+            <div class="magin-right">Użytkownik Niezalogowany.</div>
+        }
+
+    </div>
+</nav>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditCustomer">
+            <div class="magin-left">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+                <div class="form-group col-md-20">
+                    <label asp-for="Email" class="control-label"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-20">
+                    <label asp-for="NameOfCustomer" class="control-label">Imię Nazwisko</label>
+                    <input asp-for="NameOfCustomer" class="form-control" />
+                    <span asp-validation-for="NameOfCustomer" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-20">
+                    <label asp-for="PhoneNumber" class="control-label">Numer Telefonu</label>
+                    <input asp-for="PhoneNumber" class="form-control" />
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-20">
+                    <label asp-for="NameOfComany" class="control-label">Nazwa Firmy</label>
+                    <input asp-for="NameOfComany" class="form-control" />
+                    <span asp-validation-for="NameOfComany" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-20">
+                    <label asp-for="Citi" class="control-label">Kod Pocztowy Miasto</label>
+                    <input asp-for="Citi" class="form-control" />
+                    <span asp-validation-for="Citi" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-20">
+                    <label asp-for="Street" class="control-label">Ulica Numer</label>
+                    <input asp-for="Street" class="form-control" />
+                    <span asp-validation-for="Street" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-20">
+                    <label asp-for="NIP" class="control-label">Numer Identyfikacji Podatkowej</label>
+                    <input asp-for="NIP" class="form-control" />
+                    <span asp-validation-for="NIP" class="text-danger"></span>
+                </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+

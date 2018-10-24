@@ -5,25 +5,44 @@
 
 
 <nav class="navbar navbar-expand-sm navbar-light" style="background-color: #e3f2fd">
-    <a asp-action="Index" class="nav-link">Home</a>
+    @Html.ActionLink("Home", "Index", "Account")
     
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
                 <a asp-action="Register" class="nav-link">Rejestracja</a>
                 @*  <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>*@
-            </li>
+            </li>          
             <li class="nav-item active">
-                <a asp-action="Login" class="nav-link">Login</a>
-                @*  <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>*@
+            @if (!User.Identity.IsAuthenticated)
+            {
+                <a asp-action="Login" class="nav-link">Login</a>               
+            }
             </li>
             <li class="nav-link active">
-            @if (User.Identity.IsAuthenticated)
-            {
-                @Html.ActionLink("Rezerwacja Sali", "Index", "Rent")
-
-            }
+                @if (User.Identity.IsAuthenticated)
+                {
+                    @Html.ActionLink("Moje Dane", "CustomerDane", "Account")
+                }
+            </li>
             
+            <li class="nav-link active">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    @Html.ActionLink("Rezerwacja Sali", "Index", "Rent")
+
+                }
+            </li>
+            
+
+            @*<li class="nav-link active">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    @Html.ActionLink("Sale", "Index", "RoomDescription")
+
+                }
+            </li>*@
+
         </ul>
         
         @if (User.Identity.IsAuthenticated)

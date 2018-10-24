@@ -21,6 +21,7 @@ namespace RentRoom
             var configBuilder = new ConfigurationBuilder();
             configBuilder.AddXmlFile("appsettings.xml");
             Configuration = configBuilder.Build();
+            
         }
         public IConfiguration Configuration { get; }
 

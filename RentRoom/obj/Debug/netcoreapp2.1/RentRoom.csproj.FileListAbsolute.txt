@@ -24,7 +24,6 @@ C:\PracaKoncowa\RentRoom\RentRoom\obj\Debug\netcoreapp2.1\RentRoom.dll
 C:\PracaKoncowa\RentRoom\RentRoom\obj\Debug\netcoreapp2.1\RentRoom.pdb
 C:\PracaKoncowa\RentRoom\RentRoom\obj\Debug\netcoreapp2.1\RentRoom.csproj.CopyComplete
 C:\PracaKoncowa\RentRoom\RentRoom\obj\Debug\netcoreapp2.1\Razor\Views\ViewTableOfWeek.g.cshtml.cs
-C:\PracaKoncowa\RentRoom\RentRoom\obj\Debug\netcoreapp2.1\Razor\Views\Default\Index.g.cshtml.cs
 C:\PracaKoncowa\RentRoom\RentRoom\bin\Debug\netcoreapp2.1\appsettings.xml
 C:\PracaKoncowa\RentRoom\RentRoom\obj\Debug\netcoreapp2.1\Razor\Views\Account\Index.g.cshtml.cs
 C:\PracaKoncowa\RentRoom\RentRoom\obj\Debug\netcoreapp2.1\Razor\Views\Account\Login.g.cshtml.cs
@@ -33,3 +32,6 @@ C:\PracaKoncowa\RentRoom\RentRoom\obj\Debug\netcoreapp2.1\Razor\Views\RoomDescri
 C:\PracaKoncowa\RentRoom\RentRoom\obj\Debug\netcoreapp2.1\Razor\Views\Rent\RentRoomTerm.g.cshtml.cs
 C:\PracaKoncowa\RentRoom\RentRoom\obj\Debug\netcoreapp2.1\Razor\Views\Account\Register.g.cshtml.cs
 C:\PracaKoncowa\RentRoom\RentRoom\obj\Debug\netcoreapp2.1\Razor\Views\RoomDescription\AddRoom.g.cshtml.cs
+C:\PracaKoncowa\RentRoom\RentRoom\obj\Debug\netcoreapp2.1\Razor\Views\Account\CustomerDane.g.cshtml.cs
+C:\PracaKoncowa\RentRoom\RentRoom\obj\Debug\netcoreapp2.1\Razor\Views\Account\EditCustomer.g.cshtml.cs
+C:\PracaKoncowa\RentRoom\RentRoom\obj\Debug\netcoreapp2.1\Razor\Views\Rent\ListRents.g.cshtml.cs

@@ -1,0 +1,106 @@
+﻿@model RentRoom.ViewModels.CustomerEditVievModel
+
+@{
+    ViewData["Title"] = "CustomerDane";
+}
+
+<nav class="navbar navbar-expand-sm navbar-light" style="background-color: #e3f2fd">
+    @Html.ActionLink("Home", "Index", "Account")
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            
+            <li class="nav-link active">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    @Html.ActionLink("Moje Dane", "CustomerDane", "Account")
+                }
+            </li>
+            <li class="nav-link active">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    @Html.ActionLink("Rezerwacja Sali", "Index", "Rent")
+                }
+            </li>
+            @*<li class="nav-link active">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    @Html.ActionLink("Sale", "Index", "RoomDescription")
+                }
+            </li>*@
+
+        </ul>
+
+        @if (User.Identity.IsAuthenticated)
+        {
+            <a asp-action="Logout" class="magin-right">Logout</a>
+        }
+
+        @if (User.Identity.IsAuthenticated)
+        {
+            <div class="magin-right">Użytkownik Zalogowany.</div>
+        }
+        else
+        {
+            <div class="magin-right">Użytkownik Niezalogowany.</div>
+        }
+
+    </div>
+</nav>
+
+<form asp-action="CustomerDane">
+    <div class="magin-left">
+
+        <div class="form-group col-md-6">
+            <hr />
+            <dl >
+                <dt class="form-control list-inline">
+                  <label>Email</label>
+                </dt>
+                <dd class="form-control">
+                    @Html.DisplayFor(model => model.Email)
+                </dd>
+                <dt class="form-control list-inline">
+                    <label>Imię Nazwisko</label>
+                 </dt>
+                <dd class="form-control">
+                    @Html.DisplayFor(model => model.NameOfCustomer)
+                </dd>
+                <dt class="form-control list-inline">
+                    <label>Numer Telefonu</label>                  
+                </dt>
+                <dd class="form-control">
+                    @Html.DisplayFor(model => model.PhoneNumber)
+                </dd>
+                <dt class="form-control list-inline">
+                    <label>Nazwa Firmy</label>
+                </dt>
+                <dd class="form-control">
+                    @Html.DisplayFor(model => model.NameOfComany)
+                </dd>
+                <dt class="form-control list-inline">
+                    <label>Kod Pocztowy Miasto</label>                   
+                </dt>
+                <dd class="form-control">
+                    @Html.DisplayFor(model => model.Citi)
+                </dd>
+                <dt class="form-control list-inline">
+                    <label>Ulica Numer</label>                   
+                </dt>
+                <dd class="form-control">
+                    @Html.DisplayFor(model => model.Street)
+                </dd>
+                <dt class="form-control list-inline">
+                    <label>Numer Identyfikacji Podatkowej</label>
+                </dt>
+                <dd class="form-control list-inline">
+                    @Html.DisplayFor(model => model.NIP)
+                </dd>
+            </dl>
+        </div>
+    </div>
+</form>
+    <div>
+        <a asp-action="EditCustomer" asp-route-id="@Model.Id" class="form-group col-md-2">Aktualizacja Danych</a>
+        
+    </div>
