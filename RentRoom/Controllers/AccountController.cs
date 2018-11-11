@@ -17,7 +17,6 @@ namespace RentRoom.Controllers
         private readonly IdentityContext _context;
         private readonly UserManager<UserModel> _userManager;
         private readonly SignInManager<UserModel> _signInManager;
-
         public AccountController(UserManager<UserModel> userManager, SignInManager<UserModel> signInManager, 
             IdentityContext context)
         {
@@ -26,25 +25,18 @@ namespace RentRoom.Controllers
             _context = context;
         }
 
-        
-
         public IActionResult Index()
         {
             return View();
         }
-
-
         public IActionResult Login()
         {
             return View();
         }
-
         public IActionResult Register()
         {
             return View();
         }
-
-        
         [HttpPost]
         public async Task<IActionResult> Login(LogInViewModel model)
         {
@@ -53,8 +45,6 @@ namespace RentRoom.Controllers
             {
                 var result = await _signInManager.PasswordSignInAsync(model.Login,
                     model.Password, model.RememberMe, false);
-
-
                 if (result.Succeeded)
                 {
                     return RedirectToAction("Index", "Account");
@@ -65,14 +55,11 @@ namespace RentRoom.Controllers
                 }
             }
             return View();
-
         }
-
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
             Customers addCustomers = new Customers();
-
             addCustomers.EmailOfCustomer = model.Email;
             addCustomers.Citi = model.Citi;
             addCustomers.NameOfComany = model.NameOfComany;
@@ -80,10 +67,7 @@ namespace RentRoom.Controllers
             addCustomers.Street = model.Street;
             addCustomers.PhoneNumber = model.PhoneNumber;
             addCustomers.NameOfCustomer = model.NameOfCustomer;
-
-
             _context.Add(addCustomers);
-
             try
             {
                 _context.SaveChanges();
@@ -92,50 +76,37 @@ namespace RentRoom.Controllers
             {
                 return Content("Brak dostepu do Bazy");
             }
-
-            
             RegisterModel addNewUser = new RegisterModel();
             addNewUser.Email = model.Email;
             addNewUser.Login = model.Login;
             addNewUser.RepeatPassword = model.RepeatPassword;
             addNewUser.Password = model.Password;
-
             if (ModelState.IsValid)
             {
                 var identity = new UserModel(addNewUser.Login);
                 identity.Email = addNewUser.Email;
                 identity.CustomersID = addCustomers.Id;
                 var result = await _signInManager.UserManager.CreateAsync(identity, addNewUser.Password);
-
                 if (result.Succeeded)
                 {
                     await _signInManager.PasswordSignInAsync(model.Login,
                         model.Password, false, false);
                     return RedirectToAction("Index", "Account");
                 }
-
                 foreach (var error in result.Errors)
                 {
                     ModelState.AddModelError("", error.Description);
                 }
             }
-
-           
             return View();
         }
-
-
         public IActionResult CustomerDane()
         {
             CustomerEditVievModel tempCustomerEditVievModel = new CustomerEditVievModel();
-
             var tempUsrer = HttpContext.User.Identity.Name;
-
             var temp3 = _context.UserModels.Where(x => x.UserName == tempUsrer)
                 .Select(i => i.CustomersID).ToArray();
-
             var tempCustomer = _context.Customerses.Single(x => x.Id == temp3[0]);
-
             tempCustomerEditVievModel.Citi = tempCustomer.Citi;
             tempCustomerEditVievModel.Email = tempCustomer.EmailOfCustomer;
             tempCustomerEditVievModel.NIP = tempCustomer.NIP;
@@ -144,17 +115,12 @@ namespace RentRoom.Controllers
             tempCustomerEditVievModel.PhoneNumber = tempCustomer.PhoneNumber;
             tempCustomerEditVievModel.Street = tempCustomer.PhoneNumber;
             tempCustomerEditVievModel.Id = tempCustomer.Id;
-
             return View(tempCustomerEditVievModel);
         }
-
         public IActionResult EditCustomer(int id)
         {
-
             CustomerEditVievModel tempCustomerEditVievModel = new CustomerEditVievModel();
-
             var tempCustomer = _context.Customerses.Single(x => x.Id == id);
-
             tempCustomerEditVievModel.Citi = tempCustomer.Citi;
             tempCustomerEditVievModel.Email = tempCustomer.EmailOfCustomer;
             tempCustomerEditVievModel.NIP = tempCustomer.NIP;
@@ -163,16 +129,12 @@ namespace RentRoom.Controllers
             tempCustomerEditVievModel.PhoneNumber = tempCustomer.PhoneNumber;
             tempCustomerEditVievModel.Street = tempCustomer.PhoneNumber;
             tempCustomerEditVievModel.Id = tempCustomer.Id;
-
             return View(tempCustomerEditVievModel);
-
-            
         }
         [HttpPost]
         public IActionResult EditCustomer(CustomerEditVievModel customerEditVievModel)
         {
             Customers tempCustomers = new Customers();
-
             tempCustomers.Id = customerEditVievModel.Id;
             tempCustomers.Citi = customerEditVievModel.Citi;
             tempCustomers.EmailOfCustomer = customerEditVievModel.Email;
@@ -181,7 +143,6 @@ namespace RentRoom.Controllers
             tempCustomers.NameOfCustomer = customerEditVievModel.NameOfCustomer;
             tempCustomers.PhoneNumber = customerEditVievModel.PhoneNumber;
             tempCustomers.Street = customerEditVievModel.Street;
-
             _context.Customerses.Update(tempCustomers);
             try
             {
@@ -191,15 +152,12 @@ namespace RentRoom.Controllers
             {
                 return Content("Brak dostepu do Bazy");
             }
-
             return RedirectToAction(nameof(Index));
         }
-
         [HttpGet]
         public async Task<IActionResult> LogOut()
         {
             await _signInManager.SignOutAsync();
-            // var result = 0;
             return RedirectToAction("Index", "Account");
         }
     }

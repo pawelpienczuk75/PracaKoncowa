@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace RentRoom.Classes
 {
-    public class ComJson
-    {
-        public string[] dataTable = new string[7];
-        public string[] HourPeriod { get; set; }
-        public List<string> ReservTerms = new List<string>() ;
-    }
+     public class ComJson
+     {
+         public string[] dataTable = new string[7];
+         public string[] HourPeriod { get; set; }
+         public List<string> ReservTerms = new List<string>() ;
+     }
 
 }
