@@ -144,7 +144,7 @@ document.addEventListener("DOMSubtreeModified", function() {
                      type: "POST",
                      dataType: "json",
                      success: function (data) {
-                         window.location.replace("http://localhost/Rent/Index");
+                       //  window.location.replace("http://localhost/Rent/Index");
                        // window.location.;
                          setReservedTerm(data.reservTerms);
                      },
@@ -154,7 +154,7 @@ document.addEventListener("DOMSubtreeModified", function() {
                      }
 
                  });
-             window.location.replace("/");
+            // window.location.replace("/");
              e.stopImmediatePropagation();
          }
 
