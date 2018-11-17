@@ -1,44 +1,44 @@
 ﻿
 document.addEventListener("DOMContentLoaded", function () {
-//Pobieranie listy sal//
-var addOption = function(tableOfRoom) {
-    var selectRoomOption = document.querySelector('#selectRoomOption');
-    var selectList = document.querySelector('#selectRoom');
-    for (var i = 0; i < tableOfRoom.length; i++) {
-        var newOption = selectRoomOption.cloneNode(true);
-        newOption.innerText = tableOfRoom[i];
-        newOption.value = tableOfRoom[i];
-        selectList.appendChild(newOption);
-    }
-    selectRoomOption.setAttribute("hidden", "true");
-};
-
- //dodawanie rezerwacji//
-var setReservedTerm = function (table) {
-    var tableDatacels = document.getElementsByClassName("t1");
-    for (var i = 0; i < tableDatacels.length; i++) {
-       var tem = tableDatacels[i].dataset.datatime;
-       for (var j = 0; j < table.length; j++) {
-           if (tem === table[j]) {
-                    tableDatacels[i].classList.remove("tablebodystyle");
-                    tableDatacels[i].classList.add("tableheadstyletermreserved");
-           }
-       }
-    }
-};
-//pobieanie danych dla listy wyboru//
-$.ajax(
-    {
-         url: "/Rent/RentRoomTermSelectListData/",
-         data: {},
-         type: "POST",
-         dataType: "json",
-         success: addOption,
-         error: function (xhr, ajaxOptons, thorownError) {
-            console.log(xhr.status);
+   //Pobieranie listy sal//
+    var addOption = function(tableOfRoom) {
+        var selectRoomOption = document.querySelector('#selectRoomOption');
+        var selectList = document.querySelector('#selectRoom');
+        for (var i = 0; i < tableOfRoom.length; i++) {
+            var newOption = selectRoomOption.cloneNode(true);
+            newOption.innerText = tableOfRoom[i];
+            newOption.value = tableOfRoom[i];
+            selectList.appendChild(newOption);
         }
-    });
- //Wbor sali//
+        selectRoomOption.setAttribute("hidden", "true");
+    };
+
+   //dodawanie rezerwacji//
+    var setReservedTerm = function (table) {
+        var tableDatacels = document.getElementsByClassName("t1");
+        for (var i = 0; i < tableDatacels.length; i++) {
+        var tem = tableDatacels[i].dataset.datatime;
+           for (var j = 0; j < table.length; j++) {
+              if (tem === table[j]) {
+                  tableDatacels[i].classList.remove("tablebodystyle");
+                  tableDatacels[i].classList.add("tableheadstyletermreserved");
+              }
+           }
+        }
+    };
+   //pobieanie danych dla listy wyboru//
+    $.ajax(
+        {
+             url: "/Rent/RentRoomTermSelectListData/",
+             data: {},
+             type: "POST",
+             dataType: "json",
+             success: addOption,
+             error: function (xhr, ajaxOptons, thorownError) {
+                console.log(xhr.status);
+             }
+        });
+   //Wbor sali//
     var selectList = document.querySelector('#selectRoom');
     selectList.addEventListener("change" , function () {
         var selectedValue = selectList.value;
@@ -71,7 +71,7 @@ $.ajax(
                 }
             });
     });
-//Przewijanie stron//
+  //Przewijanie stron//
     var pagination = document.getElementsByClassName("page-item");
     pagination[pagination.length - 1].addEventListener("click",
         function () {

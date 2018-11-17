@@ -71,7 +71,6 @@ document.addEventListener("DOMSubtreeModified", function() {
                 }
             }
         }
-
     };       
 //Rezerwowanie rerminow//
     var makeRoomReservation = document.getElementsByClassName("tablebodystyle");           
@@ -79,11 +78,11 @@ document.addEventListener("DOMSubtreeModified", function() {
         makeRoomReservation[i].addEventListener("click",function (e) {
             var selectList = document.querySelector('#selectRoom');
             var selectedValue = selectList.value;
-            var term = this.dataset.datatime;
-            this.classList.remove("tablebodystyle");
-            this.classList.add("tableheadstyletermreserved");    
+            var term = this.dataset.datatime;           
             var temp = term.split(" ");
             if (confirm("Rezeracja sali " + selectedValue + " w dniu " + temp[0] + " godzina " + temp[1])) {
+                this.classList.remove("tablebodystyle");
+                this.classList.add("tableheadstyletermreserved");  
                 $.ajax(
                     {
                         url: "/Rent/RentRoomReservationTerms/",
